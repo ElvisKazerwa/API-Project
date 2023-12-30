@@ -6,14 +6,14 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import session
 from .config import settings
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/login')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
 
 #secret_key, algorith, expiration time
 #from https://fastapi.tiangolo.com/tutorial/security/oauth2-jwt/
 
-SECRET_KEY = {settings.secret_key}
-ALGORITHM = {settings.algorithm}
-ACCESS_TOKEN_EXPIRE_MINUTES ={settings.access_token_expire_minutes}
+SECRET_KEY = settings.secret_key
+ALGORITHM = settings.algorithm
+ACCESS_TOKEN_EXPIRE_MINUTES = settings.access_token_expire_minutes
 
 def create_access_token(data: dict):
     to_encode = data.copy()
@@ -28,7 +28,7 @@ def create_access_token(data: dict):
 def verify_access_token(token: str, creaditials_exception):
   
     try:
-        payload = jwt.decode(token, SECRET_KEY,algorithms=[ALGORITHM])
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         id: str =  payload.get("user_id")
         
         if id is None:

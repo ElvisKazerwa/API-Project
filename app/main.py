@@ -1,18 +1,20 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from . import models
 from .database import engine
 from .routers import post, users, auth, vote
 from .config import settings
+from pydantic import BaseSettings
 
 
-print(settings.database_password)
+#from pydantic_settings import BaseSettings
 
 #models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-origins = ["https://WWW.google.com", "https://WWW.youtube.com"]
+#origins = ["https://WWW.google.com", "https://WWW.youtube.com"]
 
 #for public ip address
 

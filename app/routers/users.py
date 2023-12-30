@@ -1,5 +1,5 @@
-from .. import models, schemas, utils
 from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
+from .. import models, schemas, utils
 from .. database import engine, get_db
 from sqlalchemy.orm import Session
 
@@ -7,7 +7,8 @@ router = APIRouter(
   prefix="/users",
   tags=['Users']
 )
-
+# /users/
+# rusers
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=schemas.UserOut)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
