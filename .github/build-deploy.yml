@@ -1,0 +1,14 @@
+name: Build and Deploy Code
+
+on: 
+  branches: [push,  pull_request]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull git repo
+        uses: actions/checkout@v4
+      - name: say Hello to Elvis
+        run: echo "Hello elvis"
+        
